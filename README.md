@@ -36,7 +36,7 @@ http {
 }
 ```
 
-Now reload nginx to apply changes with ```nginx -s reload```.
+We can now access the jenkins ClusterIP service by means of a reverse proxy with the nginx pod. Now reload nginx to apply changes with ```nginx -s reload```.
 
 ## Configure the jenkins jobs folder
 
@@ -44,9 +44,11 @@ Access the jenkins pod:
 
 ```kubectl exec -it jenkins-696786d79d-4jgqr bash```
 
-Change to the ```/var/jenkins_home``` directory and change the ownership on the jobs folder as such:
+Change to the ```/var/jenkins_home``` directory and run ```ls -al```. You'll notice that the ```jobs``` folders ownership is set to ```root:root```, this is why our jenkins will not work in the browser at this time. Change the ownership on the jobs folder so that jenkins owns it:
 
 ```sudo chown jenkins:jenkins jobs```
+
+The ```jobs``` folder contains our ```config.xml``` file, so it is of critical importance.
 
 ## Restart the deployment:
 
