@@ -36,7 +36,7 @@ http {
 }
 ```
 
-We can now access the jenkins ClusterIP service by means of a reverse proxy with the nginx pod. Now reload nginx to apply changes with ```nginx -s reload```.
+Now reload nginx to apply changes with ```nginx -s reload```. We can now access the jenkins ClusterIP service by means of a reverse proxy with the nginx pod.
 
 ## Configure the jenkins jobs folder
 
