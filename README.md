@@ -36,7 +36,7 @@ http {
 }
 ```
 
-Now reload nginx to apply changes with ```nginx -s reload```. We can now access the jenkins ClusterIP service by means of a reverse proxy with the nginx pod.
+Now reload nginx to apply changes with ```nginx -s reload```. We can now access the jenkins ClusterIP service by means of a reverse proxy with the nginx pod, although the jenkins setting are not imported yet (see the following section).
 
 The ```location /``` means that we can just enter ```http://<pod IP>``` into a browser to access it. If instead it were ```location /jenkins``` for example, then we would need to enter ```http://<pod IP>/jenkins``` into the browser to achieve access.
 
