@@ -22,7 +22,7 @@ Update package manager with ```apt update```, then install vim:
 
 ```apt install vim```
 
-Now we want to configure the nginx configuration. Change to the ```/etc/nginx``` and edit the ```nginx.conf``` to contain:
+Now we want to configure the nginx configuration. In linux, our configuration files are usually stored in the ```/etc``` directory. Change your current working directory to ```/etc/nginx``` and run an ```ll```, you will see an ```nginx.conf``` file, this is the configuration file for nginx. Edit the ```nginx.conf``` file by deleting its contents and copying in:
 
 ```
 events {}
@@ -36,17 +36,17 @@ http {
 }
 ```
 
-Now reload nginx to apply changes with ```nginx -s reload```. We can now access the jenkins ClusterIP service by means of a reverse proxy with the nginx pod, although the jenkins setting are not imported yet (see the following section).
+Next, reload nginx to apply changes with ```nginx -s reload``` while still in the nginx ssh. We can now access the jenkins ClusterIP service by means of a reverse proxy with the nginx pod, although the jenkins settings are not imported yet (see the following section).
 
 The ```location /``` means that we can just enter ```http://<pod IP>``` into a browser to access it. If instead it were ```location /jenkins``` for example, then we would need to enter ```http://<pod IP>/jenkins``` into the browser to achieve access.
 
 ## Configure the jenkins jobs folder
 
-Access the jenkins pod:
+Now we need to configure the permissions on the jenkins settings in the jenkins pod so that jenkins can access it. Access the jenkins pod with:
 
 ```kubectl exec -it jenkins-696786d79d-4jgqr bash```
 
-Change to the ```/var/jenkins_home``` directory and run ```ls -al```. You'll notice that the ```jobs``` folders ownership is set to ```root:root```, this is why our jenkins will not work in the browser at this time. Change the ownership on the jobs folder so that jenkins owns it:
+We will be working within the ```/var``` directory, this is where important application settings are usually stored. Change your current working directory to ```/var/jenkins_home``` and run an ```ll```. You'll notice that the ```jobs``` folders ownership is set to ```root:root```, this is why our jenkins will not be functional in the browser at this time (although we can access still access the jenkins pod). Change the ownership on the jobs folder so that jenkins owns it:
 
 ```sudo chown jenkins:jenkins jobs```
 
