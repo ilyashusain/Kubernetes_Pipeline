@@ -46,7 +46,7 @@ Now we need to configure the permissions on the jenkins settings in the jenkins 
 
 ```kubectl exec -it jenkins-696786d79d-4jgqr bash```
 
-We will be working within the ```/var``` directory, this is where important application settings are usually stored. Change your current working directory to ```/var/jenkins_home``` and run an ```ll```. You'll notice that the ```jobs``` folders ownership is set to ```root:root```, this is why our jenkins will not be functional in the browser at this time (although we can access still access the jenkins pod). Change the ownership on the jobs folder so that jenkins owns it:
+We will be working within the ```/var``` directory, this is where important application settings are usually stored. Change your current working directory to ```/var/jenkins_home``` and run an ```ll```. You'll notice that the ```jobs``` folders ownership is set to ```root:root```, this is why our jenkins will not be functional in the browser at this time (although we can still access the jenkins pod). Change the ownership on the jobs folder so that jenkins owns it:
 
 ```sudo chown jenkins:jenkins jobs```
 
