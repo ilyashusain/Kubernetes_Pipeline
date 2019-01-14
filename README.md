@@ -58,4 +58,4 @@ The ```jobs``` folder contains our ```config.xml``` file, so it is of critical i
 
 ```kubectl create -f jenkins/04_deployment.yml```
 
-We can now access the jenkins service by simply copying the nginx service's ip into a browser.
+We can now access the jenkins service by simply copying the nginx service's ip into a web browser.
